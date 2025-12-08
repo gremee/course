@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Курс: Устройство компьютера</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <div class="logo">Устройство<span class="accent">ПК</span></div>
+            <nav>
+                <a href="">Главная</a>
+                <a href="Aboutcourse.html">О курсе</a>
+                <a href="program.html">Программа</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-content animate">
+            <h1>Изучи устройство компьютера<br>и начни зарабатывать уже в 15 лет</h1>
+            <p>Научим разбирать и собирать ПК, подбирать комплектующие, чистить и диагностировать — 
+               чтобы ты мог зарабатывать на ремонте и апгрейде компьютеров.</p>
+            <button class="btn" id="openModal">Записаться на курс</button>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="animate">Почему этот курс — идеален для подростков</h2>
+            <div class="features-grid">
+                <div class="feature-card animate">
+                    <h3>🔧 Практика на реальных комплектующих</h3>
+                    <p>Ученики собирают ПК своими руками и сразу видят результат.</p>
+                </div>
+                <div class="feature-card animate">
+                    <h3>💼 Первый способ заработка</h3>
+                    <p>Уже после курса можно брать первые заказы на сборку и чистку ПК.</p>
+                </div>
+                <div class="feature-card animate">
+                    <h3>🧠 Полное понимание «что внутри»</h3>
+                    <p>Все компоненты, стандарты, нюансы совместимости — простым языком.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 PC Skill — обучение компьютерной грамотности</p>
+    </footer>
+	<!-- Модальное окно -->
+<div class="modal" id="signupModal">
+    <div class="modal-content animate">
+        <h2>Запись на курс</h2>
+
+        <form id="signupForm">
+    <label>ФИО</label>
+    <input id="fioInput" type="text" placeholder="Введите ваше ФИО" required>
+
+    <label>Телефон</label>
+    <input id="phoneInput" type="tel" placeholder="Введите номер телефона" required>
+
+    <button type="submit" class="btn" style="width:100%; margin-top:15px;">
+        Отправить
+    </button>
+</form>
+
+
+        <span class="modal-close" id="closeModal">×</span>
+		<p id="successMessage" style="
+    display:none;
+    margin-top:15px;
+    color:#4ea8ff;
+    font-size:18px;
+    text-align:center;">
+    Успешно! Ожидайте звонка
+</p>
+    </div>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
