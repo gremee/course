@@ -47,7 +47,7 @@ const form = document.getElementById('signupForm');
 const successMessage = document.getElementById('successMessage');
 
 // ТВОЙ production URL (ВАЖНО!)
-const workerURL = "https://sabalinalbert9.workers.dev/";
+const workerURL = "https://dawn-field-d887.sabalinalbert9.workers.dev/";
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -82,5 +82,6 @@ form.addEventListener('submit', async (e) => {
         console.log(err);
     }
 });
+
 
 
