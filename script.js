@@ -40,42 +40,47 @@ window.addEventListener('click', (e) => {
 
 
 // ===========================
-//   ОТПРАВКА В TELEGRAM
+//   ОТПРАВКА ЧЕРЕЗ CLOUDFLARE WORKER
 // ===========================
 
 const form = document.getElementById('signupForm');
 const successMessage = document.getElementById('successMessage');
 
-form.addEventListener('submit', (e) => {
+// ТВОЙ production URL (ВАЖНО!)
+const workerURL = "https://sabalinalbert9.workers.dev/";
+
+form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const fio = document.getElementById('fioInput').value.trim();
     const phone = document.getElementById('phoneInput').value.trim();
 
-    const token = "7961448183:AAHiKDaCPlzM5u2tHvl9AZCTkWSZnat2mcc";
-    const chatId = 1215690345;
+    try {
+        const response = await fetch(workerURL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ fio, phone })
+        });
 
-    const message = `📩 НОВАЯ ЗАЯВКА\n\n👤 ФИО: ${fio}\n📱 Телефон: ${phone}`;
+        const data = await response.json();
 
-    fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-            chat_id: chatId,
-            text: message
-        })
-    })
-    .then(() => {
-        successMessage.style.display = 'block';
-        form.reset();
+        if (data.success) {
+            successMessage.style.display = 'block';
+            form.reset();
 
-        setTimeout(() => {
-            successMessage.style.display = 'none';
-            modal.style.display = 'none';
-        }, 2000);
-    })
-    .catch(err => {
-        alert("Ошибка отправки!");
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+                modal.style.display = 'none';
+            }, 2000);
+        } else {
+            alert("Ошибка сервера!");
+            console.log(data);
+        }
+
+    } catch (err) {
+        alert("Ошибка отправки запроса!");
         console.log(err);
-    });
+    }
 });
+
+
