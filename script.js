@@ -40,14 +40,11 @@ window.addEventListener('click', (e) => {
 
 
 // ===========================
-//   ОТПРАВКА ЧЕРЕЗ CLOUDFLARE WORKER
+//   ОТПРАВКА НА CLOUDFLARE WORKER
 // ===========================
 
 const form = document.getElementById('signupForm');
 const successMessage = document.getElementById('successMessage');
-
-// ТВОЙ production URL (ВАЖНО!)
-const workerURL = "https://dawn-field-d887.sabalinalbert9.workers.dev/";
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -55,16 +52,21 @@ form.addEventListener('submit', async (e) => {
     const fio = document.getElementById('fioInput').value.trim();
     const phone = document.getElementById('phoneInput').value.trim();
 
+    // ТВОЙ URL ВОРКЕРА
+    const workerURL = "https://dawn-field-d887.sabalinalbert9.workers.dev/";
+
+    const data = { fio, phone };
+
     try {
-        const response = await fetch(workerURL, {
+        const res = await fetch(workerURL, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ fio, phone })
+            body: JSON.stringify(data)
         });
 
-        const data = await response.json();
+        const result = await res.json();
 
-        if (data.success) {
+        if (result.success) {
             successMessage.style.display = 'block';
             form.reset();
 
@@ -73,15 +75,17 @@ form.addEventListener('submit', async (e) => {
                 modal.style.display = 'none';
             }, 2000);
         } else {
-            alert("Ошибка сервера!");
-            console.log(data);
+            alert("Ошибка отправки!");
+            console.log(result);
         }
 
     } catch (err) {
-        alert("Ошибка отправки запроса!");
-        console.log(err);
+        alert("Ошибка соединения!");
+        console.error(err);
     }
 });
+
+
 
 
 
