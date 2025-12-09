@@ -253,7 +253,12 @@ nav ul li a {
 
 @media (max-width: 768px) {
 
+    header {
+        padding: 5px 0;
+    }
+    
     .header .container {
+        padding: 0 10px;
         flex-wrap: wrap;
         justify-content: center;
         gap: 10px;
@@ -262,13 +267,17 @@ nav ul li a {
     nav ul {
         flex-wrap: wrap;
         justify-content: center;
-        gap: 20px;
-        margin-top: 10px;
+        gap: 15px;
+        margin-top: 0;
     }
 
     nav ul li a {
         font-size: 18px;
     }
+    .hero {
+        padding-top: 120px !important;
+    }
 }
+
 
 
